@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: "adidas";
+    src: url("../fonts/adidastipo.ttf");
+}
 
 a {
     text-decoration: none;
@@ -11,8 +15,11 @@ a {
     font-weight: bold;
 }
 
-body {
-    height: 100%;
+body,
+html {
+    height: 100vh;
+    width: 100vw;
+    font-family: "adidas," sans-serif;
 }
 
 /* navbar */
@@ -42,7 +49,7 @@ nav {
     list-style: none;
 }
 
-.logo-flex {
+.logo {
     height: 90px;
 }
 
@@ -191,6 +198,7 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 80px;
 }
 
 .equipos div h2 {
@@ -204,17 +212,20 @@ nav {
     margin: 0px 10px;
 }
 
-.novedades-cont {
+.novedades-cont,
+.mejor {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.novedades {
+.novedades,
+.mejorAdidas {
     display: flex;
     align-items: center;
     cursor: pointer;
     margin-left: 15px;
+
 
 
 }
@@ -255,7 +266,153 @@ nav {
     color: white;
 }
 
-.basket {
-    width: 220px;
-    height: 220px;
+.productos-novedades {
+    margin-bottom: 280px;
 }
+
+.producto {
+    height: 278px;
+    width: 278px;
+    background-image: url(../assets/adidasbasket.avif);
+    background-size: contain;
+    display: flex;
+    justify-content: space-between;
+    background-repeat: no-repeat;
+}
+
+.cont-producto {
+    padding-right: 20px;
+}
+
+.cont-producto:first-child {
+    padding-left: 20px;
+}
+
+.producto p {
+    align-self: flex-end;
+    background-color: whitesmoke
+}
+
+.p-cont p {
+    margin: 0px;
+}
+
+.tendencias {
+    margin-bottom: 170px;
+}
+
+.tendencias h2 {
+    font-weight: bolder;
+    font-size: 50px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.productos-novedades {
+    display: flex;
+}
+
+.card-tendencia {
+
+    height: 400px;
+    width: 300px;
+    margin: 0px 8px;
+}
+
+.card-tendencia div {
+    display: flex;
+    flex-direction: column;
+    height: 125px;
+    justify-content: space-between;
+}
+
+.card-tendencia img {
+    height: 400px;
+    width: 300px;
+}
+
+.card-tendencia div a {
+    text-decoration: underline;
+    width: 120px;
+}
+
+.card-tendencia div a:hover {
+    background-color: black;
+    color: white;
+}
+
+.card-tendencia div h3 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.card-tendencia div p {
+    font-size: 13px;
+}
+
+.card-cont {
+    display: flex;
+
+}
+
+.articulos {
+    display: flex;
+}
+
+.articulos article {
+    width: 600px;
+    margin: 15px;
+}
+
+.articulos article h2 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.popular h2 {
+    font-size: 40px;
+    font-weight: bold;
+    margin-left: 15px;
+}
+
+.popular-botones {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.popular-botones div {
+    border-bottom: 1px solid black;
+    width: 400px;
+    margin: 20px 10px;
+    padding: 15px;
+
+}
+
+.popular-botones div:hover {
+    border-bottom: 6px solid black;
+}
+
+.popular-botones div a {
+    line-height: 36px;
+    font-size: 36px;
+}
+
+.registrate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: yellow;
+    height: 130px;
+}
+.registrate h2 a {background-color: black;
+    box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.75);
+color: white;
+font-size: 16px;
+padding: 15px;}
+.registrate h2 {
+    color: black;
+    font-size: 30px;
+    font-weight: bolder;
+}
+.registrate h2 a:hover {color: gray;}
+h2 {background-color: red;}
