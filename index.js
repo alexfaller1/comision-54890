@@ -1,53 +1,194 @@
-let nombreProducto = prompt("Ingrese el nombre del producto");
-let precioProducto = prompt("Ingrese el precio del producto");
-let nombreObjeto = prompt("Ingrese el nombre para el objeto producto");
-let codigopostal =prompt("ingrese su codigo postal")
 class Producto {
   constructor(nombre, precio) {
     this.nombre = nombre;
     this.precio = precio;
   }
- calcularEnvio(codigo) {
+
+  calcularEnvio(codigo) {
     if (codigo !== null) {
       if (!isNaN(codigo) && codigo > 0 && codigo <= 4000) {
         if (codigo < 2000) {
-         document.write(" El envío es de $2000");
+          return "El envío es de $2000";
         } else {
-          document.write(" El envío es gratis");
+          return "El envío es gratis";
         }
       } else {
-        document.write(" El código postal no es válido");
+        return "El código postal no es válido";
       }
     }
   }
-  
-  
 }
 
-let producto = new Producto(nombreProducto, precioProducto);
-    let objetoNombreProducto = {
-        nombreObjeto: producto
-    };
-    objetoNombreProducto[nombreObjeto] = producto;
+let productosArray = [];
 
-    for (const propiedades in producto){
-      document.write(" la propiedad es "+ propiedades)
-       document.write(" y el valor es "+ producto[propiedades])
-   }
+let agregarProducto = true;
+while (agregarProducto) {
+  let nombreProducto = prompt("Ingrese el nombre del producto");
+  let precioProducto = prompt("Ingrese el precio del producto");
+  let codigopostal = prompt("Ingrese su código postal");
+
+  let producto = new Producto(nombreProducto, precioProducto);
+
+  console.log("Nombre del producto: " + producto.nombre);
+  console.log("Precio del producto: " + producto.precio);
+
+  let costoEnvio = producto.calcularEnvio(codigopostal);
+  console.log(costoEnvio);
+
+  productosArray.push(producto);
+
+  let continuar = prompt("Desea agregar otro producto? (Si/No)");
+  if (continuar.toLowerCase() === "no") {
+    agregarProducto = false;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// class Producto {
+//   constructor(nombre, precio) {
+//     this.nombre = nombre;
+//     this.precio = precio;
+//   }
+
+//   calcularEnvio(codigo) {
+//     if (codigo !== null) {
+//       if (!isNaN(codigo) && codigo > 0 && codigo <= 4000) {
+//         if (codigo < 2000) {
+//           document.write("El envío es de $2000");
+//         } else {
+//           document.write("El envío es gratis");
+//         }
+//       } else {
+//         document.write("El código postal no es válido");
+//       }
+//     }
+//   }
+// }
+
+// let productosArray = [];
+
+// let agregarProducto = true;
+// while (agregarProducto) {
+//   let nombreProducto = prompt("Ingrese el nombre del producto");
+//   let precioProducto = prompt("Ingrese el precio del producto");
+//   let codigopostal = prompt("Ingrese su código postal");
+
+//   let producto = new Producto(nombreProducto, precioProducto);
+
+
+//   for (const propiedades in producto) {
+//     document.write("La propiedad es " + propiedades);
+//     document.write(" y el valor es " + producto[propiedades]);
+//   }
+
+//   producto.calcularEnvio(codigopostal);
+
+//   productosArray.push(producto);
+
+//   let continuar = prompt("Desea agregar otro producto? (Si/No)");
+//   if (continuar === "no") {
+//     agregarProducto = false;
+//   }
+// }
+
+
+// for (let i = 0; i < productosArray.length; i++) {
+//   const productoEspecifico = productosArray[i];
+//   console.log("Nombre del producto: " + productoEspecifico.nombre);
+//   console.log("Precio del producto: " + productoEspecifico.precio);
+
+
+// }
+
+
+
+
+
+
+
+
+
+
+// let nombreProducto = prompt("Ingrese el nombre del producto");
+// let precioProducto = prompt("Ingrese el precio del producto");
+// let nombreObjeto = prompt("Ingrese el nombre para el objeto producto");
+// let codigopostal =prompt("ingrese su codigo postal")
+// class Producto {
+//   constructor(nombre, precio) {
+//     this.nombre = nombre;
+//     this.precio = precio;
+//   }
+//  calcularEnvio(codigo) {
+//     if (codigo !== null) {
+//       if (!isNaN(codigo) && codigo > 0 && codigo <= 4000) {
+//         if (codigo < 2000) {
+//          document.write(" El envío es de $2000");
+//         } else {
+//           document.write(" El envío es gratis");
+//         }
+//       } else {
+//         document.write(" El código postal no es válido");
+//       }
+//     }
+//   }
   
+// }
 
- producto.calcularEnvio(codigopostal)
+// let producto = new Producto(nombreProducto, precioProducto);
+//     let objetoNombreProducto = {
+//         nombreObjeto: producto
+//     };
+//     objetoNombreProducto[nombreObjeto] = producto;
+
+//     for (const propiedades in producto){
+//       document.write(" la propiedad es "+ propiedades)
+//        document.write(" y el valor es "+ producto[propiedades])
+//    }
+
+//  producto.calcularEnvio(codigopostal)
+
+//  let productosArray = [];
+//  productosArray.push(producto); 
+ 
+//  for (let i = 0; i < productosArray.length; i++) {
+//    const productoEspecifico = productosArray[i];
+//    console.log("Nombre del producto: " + productoEspecifico.nombre);
+//    console.log("Precio del producto: " + productoEspecifico.precio);
+//  }
 
 
 
 
 
 
+// let array =[1,2,3,4,5,6,7,8,9,10]
 
+// for (i=0; i <array.length; i++) {
+//   console.log(array[i])
+// }
 
-
-
-
+// console.log(array.length)
+// console.log(array[array.length-1])
 
 
 
