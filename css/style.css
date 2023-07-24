@@ -4,11 +4,6 @@
     box-sizing: border-box;
 }
 
-@font-face {
-    font-family: "adidas";
-    src: url("../fonts/adidastipo.ttf");
-}
-
 a {
     text-decoration: none;
     color: black;
@@ -415,4 +410,4 @@ padding: 15px;}
     font-weight: bolder;
 }
 .registrate h2 a:hover {color: gray;}
-h2 {background-color: red;}
+/* h2 {background-color: red;} */

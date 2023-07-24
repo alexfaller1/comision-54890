@@ -1,47 +1,50 @@
-class Producto {
-  constructor(nombre, precio) {
-    this.nombre = nombre;
-    this.precio = precio;
+document.addEventListener('DOMContentLoaded', () => {
+  const productos = [
+    { nombre: 'Producto 1', precio: 10 },
+    { nombre: 'Producto 2', precio: 20 },
+    { nombre: 'Producto 3', precio: 15 },
+    { nombre: 'Producto 4', precio: 25 },
+  ];
+  const carrito = [];
+  const productosDiv = document.getElementById('productos');
+  productos.forEach((producto, index) => {
+    const button = document.createElement('button');
+    button.textContent = `Agregar ${producto.nombre} - $${producto.precio}`;
+    button.addEventListener('click', () => agregarProductoAlCarrito(index));
+    productosDiv.appendChild(button);
+  });
+  function agregarProductoAlCarrito(index) {
+    carrito.push(productos[index]);
+    guardarCarritoEnStorage();
+    actualizarCarrito();
   }
-
-  calcularEnvio(codigo) {
-    if (codigo !== null) {
-      if (!isNaN(codigo) && codigo > 0 && codigo <= 4000) {
-        if (codigo < 2000) {
-          return "El envío es de $2000";
-        } else {
-          return "El envío es gratis";
-        }
-      } else {
-        return "El código postal no es válido";
-      }
+  function actualizarCarrito() {
+    const carritoUl = document.getElementById('carrito');
+    carritoUl.innerHTML = '';
+    carrito.forEach(producto => {
+      const li = document.createElement('li');
+      li.textContent = `${producto.nombre} - $${producto.precio}`;
+      carritoUl.appendChild(li);
+    });
+  }
+  function guardarCarritoEnStorage() {
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+  }
+  function cargarCarritoDesdeStorage() {
+    const carritoGuardado = localStorage.getItem('carrito');
+    if (carritoGuardado) {
+      carrito.push(...JSON.parse(carritoGuardado));
+      actualizarCarrito();
     }
   }
-}
-
-let productosArray = [];
-
-let agregarProducto = true;
-while (agregarProducto) {
-  let nombreProducto = prompt("Ingrese el nombre del producto");
-  let precioProducto = prompt("Ingrese el precio del producto");
-  let codigopostal = prompt("Ingrese su código postal");
-
-  let producto = new Producto(nombreProducto, precioProducto);
-
-  console.log("Nombre del producto: " + producto.nombre);
-  console.log("Precio del producto: " + producto.precio);
-
-  let costoEnvio = producto.calcularEnvio(codigopostal);
-  console.log(costoEnvio);
-
-  productosArray.push(producto);
-
-  let continuar = prompt("Desea agregar otro producto? (Si/No)");
-  if (continuar.toLowerCase() === "no") {
-    agregarProducto = false;
-  }
-}
+  cargarCarritoDesdeStorage();
+  const botonVaciarCarrito = document.getElementById('vaciarCarrito');
+  botonVaciarCarrito.addEventListener('click', () => {
+    carrito.length = 0; 
+    guardarCarritoEnStorage(); 
+   actualizarCarrito(); 
+  });
+});
 
 
 
@@ -53,6 +56,458 @@ while (agregarProducto) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// let productos=[
+//   {nombre: "argentina",
+//    precio: "$200",
+//   img:"./assets/argentina.avif"},
+//    {nombre: "boca",
+//    precio: "$200",
+//    img:"./assets/boca.avif"},
+//    {nombre: "bayern",
+//    precio: "$200",
+//    img:"./assets/bayern.avif"},
+//    {nombre: "arsenal",
+//    precio: "$200",
+//    img:"./assets/arsenal.avif"}
+// ]
+
+// let contenedorProductos = document.getElementById("productos-content")
+// let carritoul = document.getElementById("carritoUl")
+// let carrito = []
+
+
+
+// productos.forEach((producto) => {
+//   let div =document.createElement("div")
+//   div.className = "contenedor"
+//  div.innerHTML = `<h2>${producto.nombre}</h2>
+//   <h3>${producto.precio}</h3>
+//   <img src="${producto.img}">
+//   `
+//   contenedorProductos.append(div)
+// let boton =document.createElement("button")
+// boton.innerText ="comprar"
+
+// div.append(boton)
+// boton.addEventListener("click",() => {
+//   carrito.push({
+//     nombre: producto.nombre,
+//     precio:producto.precio,
+//     img:producto.img
+//   })
+// console.log(carrito)
+// })
+// })
+
+
+//let numero1 =Number(prompt("ingrese un numero"))
+// let numero2 =Number(prompt("ingrese otro numero"))
+// let operador =prompt("ingrese la operacion que quiere hacer(+,-,*,/)")
+
+// function calculadora(numero1,numero2,operador) {
+//   if (operador === "" || operador === undefined ){
+//     alert("no pusiste un operador valido")
+  
+//   }
+//   else if (operador === "-"){
+//     alert(numero1 - numero2)
+//    }
+//    else if (operador === "+"){
+//     alert(numero1 + numero2 )
+//    }
+//    else if (operador === "/"){
+//     alert(numero1 / numero2 )
+//    }
+//    else if (operador === "*"){
+//     alert(numero1 * numero2 )
+//    }
+  
+//   }
+//  calculadora(numero1,numero2,operador)
+ 
+// let titulo =document.getElementById("titulo")
+// console.log(titulo.innerText)
+// console.log (titulo.innerText = "hola pepe")
+
+//  // recorriendo html collection
+// let productoEspecial = document.getElementById("productoEspecial").innerHTML
+// console.log(productoEspecial)
+// let productos = document.getElementsByClassName("productos")
+// for (let producto of productos)
+// {console.log(producto.innerHTML)}
+
+// // forma de cambiarlo en el dom 
+// let ejemplo = document.getElementById("ejemplo")
+// // con innerHTML puedo escribir html dentro,con inner text no 
+// ejemplo.innerHTML=`  <h2> pepe </h2> `
+//  ejemplo.className = "alex" // le agrego una clase al contenedor 
+//  let nuevoTitulo = document.createElement("h2")
+
+// nuevoTitulo.innerHTML = "alex capo"
+// document.body.append(nuevoTitulo)
+// //para borrarlo seria
+// // nuevoTitulo.remove()
+
+ 
+//  document.getElementById("nombre").placeholder = "pone un nombre"
+//  document.getElementById("edad").value = " pone un numero "
+
+ 
+//  let lista = document.getElementById("lista")
+//  let arrayPersonas = ["alex", "nashe", "juan", "pedro"]
+
+// for (let persona of arrayPersonas){
+//   let nuevaPersona = document.createElement("li")
+//   nuevaPersona.innerHTML = persona
+//   lista.appendChild(nuevaPersona); 
+
+// }
+
+
+
+// // con backticks se puede escribir asi 
+// `<h2> lalal ${lista.innerHTML}</h2>`
+// let contenedor = document.createElement("div")
+// document.body.appendChild(contenedor)
+
+// productos = [
+// {nombre: "pepe",
+// precio : 2000},
+// {nombre: "pepe",
+// precio : 2000},
+// {nombre: "pepe",
+// precio : 2000}]
+  
+// for (let persona of productos) {
+//   let producto = document.createElement("h1")
+//   producto.innerHTML = `${persona.nombre}
+//   ${persona.precio}
+//   `
+//   contenedor.appendChild(producto)
+
+//query selector
+// document.querySelector("#id " ".clase " "etiqueta ")
+ 
+
+
+//  class Producto {
+//    constructor(nombre, precio,envio) {
+//      this.nombre = nombre;
+//      this.precio = precio;
+//      this.envio = envio
+//    }
+
+//    calcularEnvio(codigo) {
+//      if (codigo !== null) {
+//        if (!isNaN(codigo) && codigo > 0 && codigo <= 4000) {
+//          if (codigo < 2000) {
+//            return "El envío es de $2000";
+//          } else {
+//            return "El envío es gratis";
+//          }
+//        } else {
+//          return "El código postal no es válido";
+//        }
+//      }
+//    }
+//  }
+
+//  let productosArray = [];
+
+//  let agregarProducto = true;
+//  while (agregarProducto) {
+//    let nombreProducto = prompt("Ingrese el nombre del producto");
+//    let precioProducto = prompt("Ingrese el precio del producto");
+//    let codigopostal = prompt("Ingrese su código postal");
+
+//    let producto = new Producto(nombreProducto, precioProducto, codigopostal);
+
+//    console.log("Nombre del producto: " + producto.nombre);
+//    console.log("Precio del producto: " + producto.precio);
+//    console.log("El costo del envio es : " + producto.calcularEnvio(codigopostal));
+
+
+
+//    productosArray.push(producto);
+
+//    let continuar = prompt("Desea agregar otro producto? (Si/No)");
+//    if (continuar.toLowerCase() === "no") {
+//      agregarProducto = false;
+//    }
+//  }
+
+
+
+// let boton =document.getElementById("boton")
+// boton.addEventListener("click", respuestaClick)
+// function respuestaClick(){
+//   console.log("tocaste el boton")
+// }
+
+// let input =document.getElementById("texto")
+
+// input.onmousemove = function (evento) {console.log("mousemove" , evento)}
+
+
+//otra forma es 
+
+
+// tambien se puede hacer directamente en la etiqueta html con el atributo onclick
+
+
+
+
+// boton.addEventListener("focus", respuestaClick)
+
+
+
+// Ejemplos de funcion de orden superior que retorna una funcion
+
+//   function mayorQue(n){
+//      return (m) => m > n
+//     return function (m) {return m > n}
+
+//  }
+
+//  let mayorQueDiez = mayorQue(10)
+//  console.log(mayorQueDiez(11))
+
+
+//  function asignarOperacion(operacion){
+//   if (operacion == "sumar"){
+//     return function(numero1,numero2){return numero1 +numero2}
+//   }
+//   else if (operacion == "restar"){
+//     return (numero1,numero2) => numero1 -numero2
+//   }
+//  } 
+
+
+//  let sumar = asignarOperacion("sumar")
+//  let restar = asignarOperacion("restar")
+
+//  console.log(sumar(15,33))
+//  console.log(restar(20,10))
+// //  Ejemplos de funcion de orden superior que toma como parametro una funcion (se llaman callbacks)
+// let numeros =[1,2,3,4,5]
+// function cadaUno(array,funcion)
+// {
+//   for(let elementos of array){
+//   funcion(elementos)
+// }
+// }
+
+
+
+// let total = 0
+// function acumular(num){
+//   total += num
+// }
+
+
+// cadaUno(numeros, acumular)
+// console.log(total)
+
+
+// const duplicado = []
+
+// function sumarAlArray(numero)  {
+//   duplicado.push(numero*2)
+// }
+// cadaUno(numeros ,sumarAlArray )
+
+// // cadaUno(numeros ,(elementos) => {
+// //   duplicado.push(elementos*2  )
+// // })
+
+
+// console.log(duplicado)
+
+
+
+
+// const cursos = [
+//   { nombre: "javascript", precio: 15000 },
+//   { nombre: "css", precio: 10000 }
+// ];
+
+
+// // el find retorna el primer elemento que coincida y devuelve solo el objeto 
+
+// let curso = cursos.find((cursoObjeto) => cursoObjeto.nombre === "css")
+
+// // es lo mismo que el find pero devuelve booleano
+// let curs1o = cursos.some((cursoObjeto) => cursoObjeto.nombre === "css")
+// console.log(curs1o)
+
+// // filter devuelve todo los que consiga,devuelve siempre array y el valor que coincide,en este caso devuelve un array que dentro tiene un objeto
+// // let curso1 = cursos.filter((cursoObjeto) => cursoObjeto.nombre === "css")
+// let curso2 = cursos.filter((cursoObjeto) => cursoObjeto.nombre.includes("s"))
+// console.log(curso2)
+
+
+
+// // me crea un array a partir del anterior con los elementos que coincidan con lo que busco,en este caso crea un array con javascriprt y css
+// let map = cursos.map( (cursoObjeto) => cursoObjeto.nombre)
+// let precioDoble = cursos.map( (cursoObjeto) => ({nombre: cursoObjeto.nombre, precio: cursoObjeto.precio*2}))
+
+// console.log(map)
+// console.log(precioDoble)
+
+// let numerasos = [1,2,3,4,5]
+
+// const total1 = numerasos.reduce((total, numerasosElemento )=> total += numerasosElemento,5)
+// console.log(total1)
+
+// let numeros1 = [1,2,3,4,5]
+
+// numeros1.sort( (a,b) =>  a-b) //ascendente
+// console.log(numeros1)
+// numeros1.sort( (a,b) =>  b-a) //descendente
+// console.log(numeros1)
+// // console.log(curso1)
+// // console.log(curso)
+
+// let mayorymenos= [1,5,8,24,125,82,123,62,5,1]
+
+// console.log(Math.max(...mayorymenos))
+// // const arreglo = [1, 2, 3, 4, 5];
+
+// // // Ejemplo 1: Imprimir cada elemento del arreglo
+// // arreglo.forEach(function(elemento) {
+// //   console.log(elemento);
+// // });
+
+// // // Ejemplo 2: Calcular la suma de todos los elementos del arreglo
+// // let suma = 0;
+// // arreglo.forEach(function(elemento) {
+// //   suma += elemento;
+// // });
+// // console.log("La suma es:", suma);
+
+// // // Ejemplo 3: Modificar los elementos del arreglo
+// // const arreglo2 = ["Hola", "Mundo", "!"];
+// // arreglo2.forEach(function(elemento, indice) {
+// //   arreglo2[indice] = elemento.toUpperCase();
+// // });
+// // console.log(arreglo2);
+
+
+
+
+// let alex = 4.50
+// console.log(alex);
+// console.log(Math.floor(alex)) // redondea para abajo
+
+// console.log(Math.round(alex)) //redondea segun el decimel ejemplo 4,51 para arriba,4,49 para abajo
+
+// console.log(Math.ceil(alex)) //redondea para arriba
+// //square root /raiz cuadrada
+// console.log(Math.sqrt(81))
+ 
+
+// // random
+// console.log (Math.random )
+// //  0 >= nro > 10
+// console.log (Math.random * 10)
+// // 0 >= nro > 20
+
+// console.log (Math.random * 20)
+// // 0 >= nro > 50
+// console.log (Math.random * 50 )
+// // 20 >= nro > 50
+// console.log (Math.random * 30 + 20 )
+
+// console.log(Math.floor(Math.random()*20))
+
+// console.log(Math.floor(Math.random()*20+1))
+// console.log(Math.ceil(Math.random()*20))
+// console.log(Math.ceil(Math.random()* Infinity))
+
+
+
+
+
+
+
+
+
+
+// let vocales = 0
+// function contarVocales(texto){
+//   for (let i = 0; i < texto.length; i++) {
+//     let caracter =texto[i].toLowerCase()
+//     if (caracter === "a" || caracter === "e" || caracter === "i" || caracter === "o" || caracter === "u") {
+//       vocales++;
+// }
+// }
+// return vocales
+// }
+// console.log(contarVocales("pedo"))
+
+
+
+
+
+
+// const array = ["pepe","juan","roberto "]
+// function  eliminar(nombre) {
+//   let nombreEliminado = array.indexOf(nombre)
+//   if (nombre != -1) {
+//     array.splice(nombreEliminado, 1)
+//   }
+
+// }
+
+
+
+
+
+
+// .unshift agrega al principio
+// .shift elimina al principio
+// .push agrega a lo ultimo 
+// .pop elimina a lo ultimo
+// .splice(2,5) el primer numero marca el indiice a partir del cual empieza a borrar,
+// .slice(desde,hasta) por ejemplo desde el indice 2 hasta el 5 los copia no modifica el array originalno incluye el hasta o sea el indice 5 no lo copia
+// el segundo numero es cuantos lugares despues del comienzo borra,
+// // en este caso empieza en el indice 2 y borra los siguentes 5 tipos de datos
+// .join(",") hace que todo sea string por ejemplo y los separe por una coma 
+// .indexof("pepe") busca si existe el string pepe en el array y si esta me devuelve la posicion en la que se encuentra,si no esta es -1
+// includes() hace lo mismo pero devuelve booleano
+// .reverse() modifica el original invirtiendo el orden 
+// .toreverse() hace lo mismo pero sin modifica el original
+// arrrayconcatenado= numeros.concat(nombres) una forma de concatenear arrays
+
+// let listaNombres =[]
+// let limite = 5
+
+// do {
+//   let nombre=prompt("ingresa tu nombre").toUpperCase()
+//   listaNombres.push(nombre)
+//   console.log("este es el nombre",listaNombres)
+//   console.log("este es el tamaño", listaNombres.length)
+  
+// } while (listaNombres.length != limite);
 
 
 
